@@ -44,10 +44,23 @@ class Browser {
   }
 
   private function showDir() {
-    foreach ( scandir($this->pathFull) as $i ) {
+    $ls = scandir($this->pathFull);
 
+    foreach ($ls as $i) {
+      if (is_dir($this->pathFull."/".$i))
+        $this->dirItem($i);
+    }
+
+    foreach ($ls as $i) {
+      if (!is_dir($this->pathFull."/".$i))
+        $this->dirItem($i);
+    }
+
+  }
+
+  private function dirItem($i) {
       if ( $i[0] == "." && $i != ".." )
-        continue;
+        return;
 
       $url = $this->path;
 
@@ -61,7 +74,6 @@ class Browser {
         echo "/";
 
       echo "</a><br />";
-    }
   }
 
   private function showFile() {
