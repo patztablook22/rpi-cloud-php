@@ -21,7 +21,7 @@ class Browser {
     $this->filename   =   pathinfo( $this->path, PATHINFO_FILENAME );
     $this->isDir      = is_dir($this->pathFull);
 
-    if ( strpos($path, "..") === false ) {
+    if ( strpos($this->path, "..") === false ) {
       $this->valid = file_exists($this->pathFull);
     } else {
       $this->valid = false;
