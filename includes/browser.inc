@@ -48,6 +48,7 @@ class Browser {
       }
       echo "\">".$parents[$i]."</a>";
     }
+    echo "\n";
   }
 
   function show() {
@@ -60,6 +61,7 @@ class Browser {
   }
 
   private function showDir() {
+    echo "<div class=\"showDir\">\n";
     $ls = scandir($this->pathFull);
 
     foreach ($ls as $i) {
@@ -71,7 +73,7 @@ class Browser {
       if (!is_dir($this->pathFull."/".$i))
         $this->dirItem($i);
     }
-
+    echo "\t</div>\n";
   }
 
   private function dirItem($i) {
@@ -84,15 +86,17 @@ class Browser {
         $url.= "/";
       $url.= $i;
     
-      echo "<a class=\"dirItem\" href=\"/$url\">$i";
+      echo "\t\t<a class=\"dirItem\" href=\"/$url\">$i";
 
       if ($i != ".." && is_dir($this->pathFull."/".$i))
         echo "/";
 
-      echo "</a><br />";
+      echo "</a><br />\n";
   }
 
   private function showFile() {
+
+    echo "<div class=\"showFile\">\n";
 
     $extension   = pathinfo( $this->path, PATHINFO_EXTENSION );
     $description = $this->dirFull."/.".$this->filename.".".$extension.".md";
@@ -100,8 +104,10 @@ class Browser {
     if (file_exists($description)) {
       $fd  = fopen($description, "r") or die("couldn't read description file");
       $buf = trim(fread($fd, filesize($description)));
-      echo "<p class=\"comment\">\"$buf\"</p><br />";
+      echo "\t\t<p class=\"comment\">\"$buf\"</p><br />\n";
     }
+
+    echo "\t\t";
 
     switch ($extension) {
     case "mp3":
@@ -127,6 +133,8 @@ class Browser {
       header("Location: /$this->pathFull");
       break;
     }
+
+    echo "\n\t</div>\n";
 
   }
 
