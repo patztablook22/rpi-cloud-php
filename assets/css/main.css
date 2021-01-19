@@ -8,10 +8,6 @@ body {
   box-sizing: border-box;
 }
 
-img {
-}
-
-
 nav {
   width: 100%;
   display: block;
@@ -34,6 +30,12 @@ main {
   top: 2.5rem;
   left: 0;
   padding: 0.5rem;
+  width: 100%;
+}
+
+div.showFile {
+  text-align: center;
+  width: 100%;
 }
 
 a.dirItem {
