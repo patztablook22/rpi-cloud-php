@@ -118,7 +118,7 @@ class Browser {
       echo "<img src=\"/$this->pathFull\" />";
       break;
     case "mp4":
-      echo "<video width=\"320\" height=\"240\" controls>"
+      echo "<video controls>"
         ."<source src=\"/$this->pathFull\" type=\"video/mp4\">"
         ."</video>";
       break;
