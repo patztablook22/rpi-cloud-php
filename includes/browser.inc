@@ -34,6 +34,22 @@ class Browser {
 
   }
 
+  function path() {
+    $parents = explode("/", $this->path);
+    array_unshift($parents, "DISK");
+    for ($i = 0; $i < sizeof($parents); $i++) {
+      if ($i != 0)
+        echo "/";
+      echo "<a href=\"/";
+      for ($j = 0; $j < $i; $j++) {
+        if ($j != 0)
+          echo "/";
+        echo $parents[$j + 1];
+      }
+      echo "\">".$parents[$i]."</a>";
+    }
+  }
+
   function show() {
     if ( $this-> valid ) {
       if ( $this->isDir )
@@ -68,7 +84,7 @@ class Browser {
         $url.= "/";
       $url.= $i;
     
-      echo "<a href=\"/$url\">$i";
+      echo "<a class=\"dirItem\" href=\"/$url\">$i";
 
       if ($i != ".." && is_dir($this->pathFull."/".$i))
         echo "/";

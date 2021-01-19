@@ -13,7 +13,7 @@ require_once "includes/config.inc";
 <body>
 
   <nav>
-    /<?= $browser->path ?>
+    <?= $browser->path() ?>
   </nav>
 
   <main>
