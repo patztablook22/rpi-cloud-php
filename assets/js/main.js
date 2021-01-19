@@ -54,18 +54,22 @@ const keyDown = e => {
       let parents = document.querySelectorAll("nav a");
       window.location = parents[parents.length - 2].href;
       break;
+    case "Shift":
+      break;
     default:
       if (!dir)
         break;
       var first = null;
       var after = null;
+      let q = e.key.toLowerCase();
       for (let i = 0; i < dir.length; i++) {
-        let t = dir[i].innerText;
-        if (t[0] == e.key) {
+        let j = (e.key == q) ? i : dir.length - 1 - i;
+        let t = dir[j].innerText.toLowerCase();
+        if (t[0] == q) {
           if (!first)
-            first = i;
-          if (i > pos) {
-            after = i;
+            first = j;
+          if ((i == j && j > pos) || (i != j && j < pos)) {
+            after = j;
             break;
           }
         }
